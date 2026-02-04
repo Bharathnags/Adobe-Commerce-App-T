@@ -1,6 +1,0 @@
-<?php
-class Welcome
-static  $name="bbn";
-static  $city="blore";
-static function greet(){
-?>
