@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax Score Example</title>
+</head>
+<body>
+<h1> Score</h1>
+<div id="score"></div>
+    <script>
+        displayScore();
+        setInterval(displayScore,5000);//at this time interval automatically loads
+        var info=document.getElementById("score");
+        function displayScore(){
+            var obj=new XMLHttpRequest();
+            obj.open("GET","http://localhost/AJAX/score.php",true);
+            obj.send();
+          obj.onreadystatechange=function (){
+              if(obj.readyState===4 && obj.status===200){
+                info.innerHTML=  obj.responseText
+              }
+          }
+        }
+    </script>
+
+</body>
+</html>
