@@ -12,7 +12,11 @@ if (!$conn) {
 
 // Get search query
 $query = $_GET['q'];
+$query = str_replace(['%', '_'], ['\\%', '\\_'], $query); // Escape % and _
+
+// Add % for partial matching
 $searchTerm = "%" . $query . "%";
+
 
 
 $sql = "SELECT id, name, description, sku, price, stock, category, image_url 
