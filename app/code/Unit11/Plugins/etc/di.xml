@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- Product Price Plugin -->
+    <type name="Magento\Catalog\Model\Product">
+        <plugin name="afterPricePlugin"
+                type="Unit11\Plugins\Plugin\AfterPricePlugin"
+                sortOrder="1"/>
+    </type>
+
+    <!-- Footer Plugin -->
+    <type name="Magento\Theme\Block\Html\Footer">
+        <plugin name="footerPlugin"
+                type="Unit11\Plugins\Plugin\AfterFooterPlugin"
+                sortOrder="2"/>
+    </type>
+
+    <!-- Breadcrumbs Plugins -->
+    <type name="Magento\Theme\Block\Html\Breadcrumbs">
+        <plugin name="aroundBreadcrumbsPlugin"
+                type="Unit11\Plugins\Plugin\AroundBreadcrumbsPlugin"
+                sortOrder="3"/>
+
+        <plugin name="beforeBreadcrumbsPlugin"
+                type="Unit11\Plugins\Plugin\BeforeBreadcrumbsPlugin"
+                sortOrder="4"/>
+    </type>
+
+    
+
+</config>
