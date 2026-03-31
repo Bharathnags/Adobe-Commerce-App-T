@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="training" translate="label" sortOrder="400">
+            <label>Training</label>
+        </tab>
+        
+        <section id="customertracker" translate="label" sortOrder="10" 
+                 showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Customer Tracker</label>
+            <tab>training</tab>
+            <resource>Training_CustomerTracker::config</resource>
+            
+            <group id="general" translate="label" sortOrder="10" 
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Settings</label>
+                
+                <field id="enabled" translate="label" type="select" 
+                       sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Module</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                
+                <field id="customer_prefix" translate="label" type="text" 
+                       sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Customer Name Prefix</label>
+                    <comment>Add prefix to customer names (e.g., "VIP")</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
