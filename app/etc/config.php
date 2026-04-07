@@ -535,7 +535,7 @@ return [
         'PayPal_BraintreeGiftWrapping' => 1,
         'PayPal_BraintreeGraphQl' => 1,
         'PayPal_BraintreeReward' => 1,
-        'Training_CustomerTracker' => 1,
+        'RCLTask_Custom' => 1,
         'Unit11_Plugins' => 1,
         'Unit1_CustomConfig' => 1,
         'Unit1_LogPathInfo' => 1,
