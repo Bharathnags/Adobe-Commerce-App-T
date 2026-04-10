@@ -524,6 +524,7 @@ return [
         'Magento_WishlistGiftCardGraphQl' => 1,
         'Magento_GiftCardGraphQl' => 1,
         'Magento_MultipleWishlistSampleData' => 1,
+        'Adobe_Employee' => 1,
         'Bnags_CustomFeature' => 1,
         'Bnags_Helloworldmodule' => 1,
         'Mageplaza_Core' => 1,

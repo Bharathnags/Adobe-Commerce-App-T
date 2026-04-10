@@ -26,7 +26,6 @@ class Add extends Action
     public function execute()
     {
         $this->logger->info("Execute called");
-        return $this->resultPageFactory->create(); 
-
+        return $this->resultPageFactory->create();
     }
 }

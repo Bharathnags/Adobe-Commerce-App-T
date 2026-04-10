@@ -22,7 +22,7 @@ class Listing extends Template
     }
 
     public function getEmployees()
-{
-    return $this->collectionFactory->create()->getItems();
-}
+    {
+        return $this->collectionFactory->create()->getItems();
+    }
 }
