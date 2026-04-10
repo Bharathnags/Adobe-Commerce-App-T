@@ -1,0 +1,37 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+$emp = $block->getEmployee();
+?>
+
+<h2><?= $emp ? "Edit Employee" : "Add Employee" ?></h2>
+
+<form method="post" action="<?= $block->getUrl('employee/account/save') ?>">
+    <input type="hidden" name="form_key" value="<?= $block->getFormKey() ?>">
+    <input type="hidden" name="id" value="<?= $emp ? $emp->getId() : '' ?>">
+
+    <label>Name *</label><br>
+    <input type="text" name="name" value="<?= $emp ? $emp->getName() : '' ?>" required><br><br>
+
+    <label>Joining Date</label><br>
+    <input type="date" name="joining_date" value="<?= $emp ? $emp->getJoiningDate() : '' ?>"><br><br>
+
+    <label>Designation</label><br>
+    <input type="text" name="designation" value="<?= $emp ? $emp->getDesignation() : '' ?>"><br><br>
+
+    <label>Address</label><br>
+    <textarea name="address"><?= $emp ? $emp->getAddress() : '' ?></textarea><br><br>
+
+    <label>Status</label><br>
+    <select name="status">
+        <option value="1" <?= $emp && $emp->getStatus()==1 ? 'selected' : '' ?>>Active</option>
+        <option value="0" <?= $emp && $emp->getStatus()==0 ? 'selected' : '' ?>>Inactive</option>
+    </select><br><br>
+
+    <label>Hobbies (comma separated)</label><br>
+    <input type="text" name="hobbies" value="<?= $emp ? $emp->getHobbies() : '' ?>"><br><br>
+
+    <button type="submit"><?= $emp ? "Update" : "Add" ?></button>
+</form>
