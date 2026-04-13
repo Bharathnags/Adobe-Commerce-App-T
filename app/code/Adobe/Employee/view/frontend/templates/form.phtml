@@ -1,9 +1,7 @@
 <?php
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
 $emp = $block->getEmployee();
+$selectedHobbies = $emp ? explode(',', $emp->getHobbies()) : [];
+$selectedHobbies = array_map('trim', $selectedHobbies);
 ?>
 
 <h2><?= $emp ? "Edit Employee" : "Add Employee" ?></h2>
@@ -30,8 +28,14 @@ $emp = $block->getEmployee();
         <option value="0" <?= $emp && $emp->getStatus()==0 ? 'selected' : '' ?>>Inactive</option>
     </select><br><br>
 
-    <label>Hobbies (comma separated)</label><br>
-    <input type="text" name="hobbies" value="<?= $emp ? $emp->getHobbies() : '' ?>"><br><br>
+    <label>Hobbies</label><br>
+    <input type="checkbox" name="hobbies[]" value="Reading" <?= in_array('Reading', $selectedHobbies) ? 'checked' : '' ?>> Reading<br>
+    <input type="checkbox" name="hobbies[]" value="Gaming" <?= in_array('Gaming', $selectedHobbies) ? 'checked' : '' ?>> Gaming<br>
+    <input type="checkbox" name="hobbies[]" value="Sports" <?= in_array('Sports', $selectedHobbies) ? 'checked' : '' ?>> Sports<br>
+    <input type="checkbox" name="hobbies[]" value="Music" <?= in_array('Music', $selectedHobbies) ? 'checked' : '' ?>> Music<br>
+    <input type="checkbox" name="hobbies[]" value="Travel" <?= in_array('Travel', $selectedHobbies) ? 'checked' : '' ?>> Travel<br>
+    <input type="checkbox" name="hobbies[]" value="Cooking" <?= in_array('Cooking', $selectedHobbies) ? 'checked' : '' ?>> Cooking<br>
+    <br>
 
     <button type="submit"><?= $emp ? "Update" : "Add" ?></button>
 </form>

@@ -1,8 +1,4 @@
 <?php
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
 namespace Adobe\Employee\Controller\Account;
 
 use Magento\Framework\App\Action\Action;
@@ -45,13 +41,18 @@ class Save extends Action
                 $this->employeeRepository->getById((int)$data['id']) :
                 $this->employeeFactory->create();
 
+            // Convert hobbies array to comma-separated string
+            $hobbies = isset($data['hobbies']) && is_array($data['hobbies'])
+                ? implode(', ', $data['hobbies'])
+                : null;
+
             // Set data
             $employee->setName($data['name']);
             $employee->setJoiningDate($data['joining_date'] ?? null);
             $employee->setDesignation($data['designation'] ?? null);
             $employee->setAddress($data['address'] ?? null);
             $employee->setStatus($data['status'] ?? 1);
-            $employee->setHobbies($data['hobbies'] ?? null);
+            $employee->setHobbies($hobbies);
 
             // Save
             $this->employeeRepository->save($employee);

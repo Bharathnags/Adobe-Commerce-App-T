@@ -5,6 +5,9 @@
  */
 namespace Adobe\Employee\Api;
 
+/**
+ * Summary of EmployeeRepositoryInterface
+ */
 interface EmployeeRepositoryInterface
 {
     public function save($employee);

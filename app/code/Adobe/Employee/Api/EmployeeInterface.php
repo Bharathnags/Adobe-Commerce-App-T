@@ -5,6 +5,9 @@
  */
 namespace Adobe\Employee\Api;
 
+/**
+ * Summary of EmployeeInterface
+ */
 interface EmployeeInterface
 {
   

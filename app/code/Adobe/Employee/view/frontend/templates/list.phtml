@@ -6,6 +6,7 @@
 <table border="1" cellpadding="5" cellspacing="0" style="width:100%; border-collapse:collapse;">
     <thead>
         <tr>
+            <th>ID</th>
             <th>Name</th>
             <th>Joining Date</th>
             <th>Designation</th>
@@ -22,6 +23,7 @@
     <?php if ($employees && count($employees)): ?>
         <?php foreach ($employees as $emp): ?>
             <tr>
+                <td><?= $escaper->escapeHtml($emp->getId()) ?></td>
                 <td><?= $escaper->escapeHtml($emp->getName()) ?></td>
                 <td><?= $escaper->escapeHtml($emp->getJoiningDate()) ?></td>
                 <td><?= $escaper->escapeHtml($emp->getDesignation()) ?></td>
