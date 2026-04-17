@@ -10,6 +10,9 @@ use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Exception\CouldNotDeleteException;
 
+/**
+ * Summary of EmployeeRepository
+ */
 class EmployeeRepository implements EmployeeRepositoryInterface
 {
     protected $resource;
@@ -44,6 +47,7 @@ class EmployeeRepository implements EmployeeRepositoryInterface
     }
 
     public function deleteById($id)
+   
     {
         try {
             $emp = $this->getById($id);

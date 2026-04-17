@@ -1,6 +1,22 @@
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 
     <preference for="Adobe\Employee\Api\EmployeeRepositoryInterface"
                 type="Adobe\Employee\Model\EmployeeRepository"/>
+    
+    <virtualType name="EmployeeGridCollection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">adobe_employee</argument>
+            <argument name="resourceModel" xsi:type="string">Adobe\Employee\Model\ResourceModel\Employee</argument>
+        </arguments>
+    </virtualType>
+    
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="employee_listing_data_source" xsi:type="string">EmployeeGridCollection</item>
+            </argument>
+        </arguments>
+    </type>
 </config>
