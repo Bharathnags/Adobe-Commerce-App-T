@@ -47,7 +47,6 @@ class EmployeeRepository implements EmployeeRepositoryInterface
     }
 
     public function deleteById($id)
-   
     {
         try {
             $emp = $this->getById($id);
