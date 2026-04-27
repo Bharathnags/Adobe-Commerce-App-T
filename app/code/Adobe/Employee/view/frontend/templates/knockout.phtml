@@ -1,0 +1,26 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<div id="employee-ko-app" data-bind="scope:'employeeVm'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+
+<script type="text/x-magento-init">
+{
+    "#employee-ko-app": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "employeeVm": {
+                    "component": "Adobe_Employee/js/employee-viewmodel",
+                    "config": {
+                        "template": "Adobe_Employee/employee-page"
+                    }
+                }
+            }
+        }
+    }
+}
+</script>

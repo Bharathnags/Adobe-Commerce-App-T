@@ -1,0 +1,88 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<div>
+    <h2>My Employees (KO)</h2>
+
+    <button data-bind="click: addEmployee">Add Employee</button>
+
+    <!-- FORM -->
+    <div data-bind="visible: showForm" style="margin-top:20px;">
+        <h3 data-bind="text: id() ? 'Edit Employee' : 'Add Employee'"></h3>
+
+        <!-- NAME -->
+        <label>Name *</label><br>
+        <input type="text" data-bind="value: name" required><br><br>
+
+        <!-- DATE -->
+        <label>Joining Date</label><br>
+        <input type="date" data-bind="value: joiningDate"><br><br>
+
+        <!-- DESIGNATION -->
+        <label>Designation</label><br>
+        <input type="text" data-bind="value: designation"><br><br>
+
+        <!-- ADDRESS -->
+        <label>Address</label><br>
+        <textarea data-bind="value: address"></textarea><br><br>
+
+        <!-- STATUS -->
+        <label>Status</label><br>
+        <select data-bind="value: status">
+            <option value="1">Active</option>
+            <option value="0">Inactive</option>
+        </select><br><br>
+
+        <!-- HOBBIES -->
+        <label>Hobbies</label><br>
+        <!-- ko foreach: allHobbies -->
+            <label>
+                <input type="checkbox"
+                       data-bind="
+                           checked: $parent.hobbies,
+                           attr: { value: $data }
+                       ">
+                <span data-bind="text: $data"></span>
+            </label><br>
+        <!-- /ko -->
+
+        <br>
+        <button data-bind="click: saveEmployee">Save</button>
+        <button data-bind="click: cancelForm">Cancel</button>
+    </div>
+
+    <!-- TABLE -->
+    <table border="1" width="100%" style="margin-top:20px;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Joining Date</th>
+                <th>Designation</th>
+                <th>Address</th>
+                <th>Status</th>
+                <th>Hobbies</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: employees">
+            <tr>
+                <td data-bind="text: id"></td>
+                <td data-bind="text: name"></td>
+                <td data-bind="text: joining_date"></td>
+                <td data-bind="text: designation"></td>
+                <td data-bind="text: address"></td>
+                <!-- STATUS TEXT -->
+                <td data-bind="text: status == 1 ? 'Active' : 'Inactive'"></td>
+                <td data-bind="text: hobbies"></td>
+                <td>
+                    <a href="#" data-bind="click: $parent.editEmployee">Edit</a> |
+                    <a href="#" data-bind="click: $parent.deleteEmployee">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

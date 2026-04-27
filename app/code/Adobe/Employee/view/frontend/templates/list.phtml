@@ -1,3 +1,10 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+
 <h2>My Employees</h2>
 
 <a href="<?= $escaper->escapeUrl($block->getUrl('employee/account/add')) ?>"
@@ -31,8 +38,8 @@
                 <td><?= $emp->getStatus() ? 'Active' : 'Inactive' ?></td>
                 <td><?= $escaper->escapeHtml($emp->getHobbies()) ?></td>
                 <td>
-                    <a href="<?= $escaper->escapeUrl($block->getUrl('employee/account/edit', ['id'=>$emp->getId()])) ?>">Edit</a> |
-                    <a href="<?= $escaper->escapeUrl($block->getUrl('employee/account/delete', ['id'=>$emp->getId()])) ?>"
+                    <a href="<?= $escaper->escapeUrl($block->getUrl('employee/account/edit', ['id' => $emp->getId()])) ?>">Edit</a> |
+                    <a href="<?= $escaper->escapeUrl($block->getUrl('employee/account/delete', ['id' => $emp->getId()])) ?>"
                        onclick="return confirm('Are you sure you want to delete this employee?')">Delete</a>
                 </td>
             </tr>

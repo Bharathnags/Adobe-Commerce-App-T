@@ -1,4 +1,9 @@
 <?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
 namespace Adobe\Employee\Controller\Account;
 
 use Magento\Framework\App\Action\Action;
@@ -7,12 +12,36 @@ use Adobe\Employee\Api\EmployeeRepositoryInterface;
 use Adobe\Employee\Model\EmployeeFactory;
 use Magento\Framework\Controller\Result\RedirectFactory;
 
+/**
+ * Class Save
+ *
+ * Saves employee data from frontend account form.
+ */
 class Save extends Action
 {
+    /**
+     * @var EmployeeRepositoryInterface
+     */
     protected $employeeRepository;
+
+    /**
+     * @var EmployeeFactory
+     */
     protected $employeeFactory;
+
+    /**
+     * @var RedirectFactory
+     */
     protected $resultRedirectFactory;
 
+    /**
+     * Save constructor.
+     *
+     * @param Context $context
+     * @param EmployeeRepositoryInterface $employeeRepository
+     * @param EmployeeFactory $employeeFactory
+     * @param RedirectFactory $resultRedirectFactory
+     */
     public function __construct(
         Context $context,
         EmployeeRepositoryInterface $employeeRepository,
@@ -25,6 +54,11 @@ class Save extends Action
         $this->resultRedirectFactory = $resultRedirectFactory;
     }
 
+    /**
+     * Execute method
+     *
+     * @return \Magento\Framework\Controller\Result\Redirect
+     */
     public function execute()
     {
         $resultRedirect = $this->resultRedirectFactory->create();

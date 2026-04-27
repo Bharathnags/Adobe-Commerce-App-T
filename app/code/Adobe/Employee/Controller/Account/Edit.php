@@ -3,6 +3,7 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+
 namespace Adobe\Employee\Controller\Account;
 
 use Magento\Framework\App\Action\Action;
@@ -11,12 +12,36 @@ use Adobe\Employee\Api\EmployeeRepositoryInterface;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Framework\Controller\Result\RedirectFactory;
 
+/**
+ * Class Edit
+ *
+ * Handles employee edit page rendering and validation.
+ */
 class Edit extends Action
 {
+    /**
+     * @var EmployeeRepositoryInterface
+     */
     protected $employeeRepository;
+
+    /**
+     * @var PageFactory
+     */
     protected $resultPageFactory;
+
+    /**
+     * @var RedirectFactory
+     */
     protected $resultRedirectFactory;
 
+    /**
+     * Edit constructor.
+     *
+     * @param Context $context
+     * @param EmployeeRepositoryInterface $employeeRepository
+     * @param PageFactory $resultPageFactory
+     * @param RedirectFactory $resultRedirectFactory
+     */
     public function __construct(
         Context $context,
         EmployeeRepositoryInterface $employeeRepository,
@@ -29,6 +54,11 @@ class Edit extends Action
         $this->resultRedirectFactory = $resultRedirectFactory;
     }
 
+    /**
+     * Execute method
+     *
+     * @return \Magento\Framework\Controller\ResultInterface
+     */
     public function execute()
     {
         $id = (int)$this->getRequest()->getParam('id');

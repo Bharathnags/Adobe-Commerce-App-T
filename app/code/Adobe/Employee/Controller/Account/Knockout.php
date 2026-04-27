@@ -6,16 +6,15 @@
 
 namespace Adobe\Employee\Controller\Account;
 
-use Magento\Framework\App\Action\Action;
-use Magento\Framework\App\Action\Context;
+use Magento\Framework\App\ActionInterface;
 use Magento\Framework\View\Result\PageFactory;
 
 /**
- * Class Index
+ * Class Knockout
  *
- * Displays the employee account index page.
+ * Renders Knockout employee listing page.
  */
-class Index extends Action
+class Knockout implements ActionInterface
 {
     /**
      * @var PageFactory
@@ -23,16 +22,12 @@ class Index extends Action
     protected $resultPageFactory;
 
     /**
-     * Index constructor.
+     * Knockout constructor.
      *
-     * @param Context $context
      * @param PageFactory $resultPageFactory
      */
-    public function __construct(
-        Context $context,
-        PageFactory $resultPageFactory
-    ) {
-        parent::__construct($context);
+    public function __construct(PageFactory $resultPageFactory)
+    {
         $this->resultPageFactory = $resultPageFactory;
     }
 
@@ -43,6 +38,8 @@ class Index extends Action
      */
     public function execute()
     {
-        return $this->resultPageFactory->create();
+        $page = $this->resultPageFactory->create();
+        $page->getConfig()->getTitle()->set("My Employees (Knockout)");
+        return $page;
     }
 }
