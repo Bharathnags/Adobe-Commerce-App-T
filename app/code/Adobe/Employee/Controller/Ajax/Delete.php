@@ -4,7 +4,7 @@
  * See COPYING.txt for license details.
  */
 
-namespace Adobe\Employee\Controller\Api;
+namespace Adobe\Employee\Controller\Ajax;
 
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Controller\Result\JsonFactory;

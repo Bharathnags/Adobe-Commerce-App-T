@@ -46,14 +46,14 @@ define([
         },
 
         /**
-         * Load employees from API
+         * Load employees from Ajax
          *
          * @returns {void}
          */
         loadEmployees: function () {
             var self = this;
 
-            storage.get(url.build('employee/api/listing'))
+            storage.get(url.build('/employee/Ajax/listing'))
                 .done(function (res) {
                     self.employees(res.items || []);
                 });
@@ -91,7 +91,7 @@ define([
         },
 
         /**
-         * Save employee data via API
+         * Save employee data via Ajax
          *
          * @returns {void}
          */
@@ -109,7 +109,7 @@ define([
             };
 
             storage.post(
-                url.build('employee/api/save'),
+                url.build('employee/Ajax/save'),
                 JSON.stringify(payload)
             ).done(function (res) {
                 if (res.success) {
@@ -121,7 +121,7 @@ define([
         },
 
         /**
-         * Delete employee via API
+         * Delete employee via Ajax
          *
          * @param {Object} emp - Employee data object
          * @returns {void}
@@ -132,7 +132,7 @@ define([
             if (!confirm('Are you sure?')) return;
 
             storage.post(
-                url.build('employee/api/delete'),
+                url.build('employee/ajax/delete'),
                 JSON.stringify({ id: emp.id })
             ).done(function (res) {
                 if (res.success) {

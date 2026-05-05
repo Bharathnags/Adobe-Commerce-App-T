@@ -9,6 +9,8 @@ use Adobe\Employee\Api\EmployeeRepositoryInterface;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Exception\CouldNotDeleteException;
+use Adobe\Employee\Model\ResourceModel\Employee\CollectionFactory;
+use Magento\Framework\Api\SearchResultsInterfaceFactory;
 
 /**
  * Summary of EmployeeRepository
@@ -17,13 +19,19 @@ class EmployeeRepository implements EmployeeRepositoryInterface
 {
     protected $resource;
     protected $factory;
+    protected $collectionFactory;
+    protected $searchResultsFactory;
 
     public function __construct(
         \Adobe\Employee\Model\ResourceModel\Employee $resource,
-        \Adobe\Employee\Model\EmployeeFactory $factory
+        \Adobe\Employee\Model\EmployeeFactory $factory,
+        CollectionFactory $collectionFactory,
+        SearchResultsInterfaceFactory $searchResultsFactory 
     ) {
         $this->resource = $resource;
         $this->factory = $factory;
+        $this->collectionFactory = $collectionFactory;
+        $this->searchResultsFactory = $searchResultsFactory;
     }
 
     public function save($employee)
@@ -55,4 +63,15 @@ class EmployeeRepository implements EmployeeRepositoryInterface
             throw new CouldNotDeleteException(__('Could not delete Employee: %1', $e->getMessage()));
         }
     }
+    public function getList(
+    \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria
+) {
+    $collection = $this->collectionFactory->create();
+
+    $searchResults = $this->searchResultsFactory->create();
+    $searchResults->setItems($collection->getItems());
+    $searchResults->setTotalCount($collection->getSize());
+
+    return $searchResults;
+}
 }

@@ -53,9 +53,15 @@ class Employee extends AbstractModel implements EmployeeInterface
     }
 
     public function getHobbies()
-    {
-        return $this->getData('hobbies');
+{
+    $value = $this->getData(self::HOBBIES);
+
+    if (!$value) {
+        return [];
     }
+
+    return array_map('trim', explode(',', $value));
+}
 
     // ------------------------------
     // Setter methods
@@ -92,7 +98,11 @@ class Employee extends AbstractModel implements EmployeeInterface
     }
 
     public function setHobbies($hobbies)
-    {
-        return $this->setData('hobbies', $hobbies);
+{
+    if (is_array($hobbies)) {
+        $hobbies = implode(',', $hobbies);
     }
+
+    return $this->setData(self::HOBBIES, $hobbies);
+}
 }

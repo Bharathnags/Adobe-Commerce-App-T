@@ -23,43 +23,58 @@ interface EmployeeInterface
 
     /**
      * Get ID
+     *
+     * @return int|null
      */
     public function getId();
 
     /**
      * Get Name
+     *
+     * @return string|null
      */
     public function getName();
 
     /**
      * Get Joining Date
+     *
+     * @return string|null
      */
     public function getJoiningDate();
 
     /**
      * Get Designation
+     *
+     * @return string|null
      */
     public function getDesignation();
 
     /**
      * Get Address
+     *
+     * @return string|null
      */
     public function getAddress();
 
     /**
      * Get Status
+     *
+     * @return int|null
      */
     public function getStatus();
 
     /**
      * Get Hobbies
+     *
+     * @return string[]|null
      */
     public function getHobbies();
 
     /**
      * Set ID
      *
-     * @param mixed $id
+     * @param int $id
+     * @return $this
      */
     public function setId($id);
 
@@ -67,13 +82,15 @@ interface EmployeeInterface
      * Set Name
      *
      * @param string $name
+     * @return $this
      */
     public function setName($name);
 
     /**
      * Set Joining Date
      *
-     * @param mixed $joiningDate
+     * @param string $joiningDate
+     * @return $this
      */
     public function setJoiningDate($joiningDate);
 
@@ -81,6 +98,7 @@ interface EmployeeInterface
      * Set Designation
      *
      * @param string $designation
+     * @return $this
      */
     public function setDesignation($designation);
 
@@ -88,20 +106,23 @@ interface EmployeeInterface
      * Set Address
      *
      * @param string $address
+     * @return $this
      */
     public function setAddress($address);
 
     /**
      * Set Status
      *
-     * @param mixed $status
+     * @param int $status
+     * @return $this
      */
     public function setStatus($status);
 
     /**
      * Set Hobbies
      *
-     * @param mixed $hobbies
+     * @param string[] $hobbies
+     * @return $this
      */
     public function setHobbies($hobbies);
 }

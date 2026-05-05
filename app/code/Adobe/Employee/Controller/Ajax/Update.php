@@ -4,19 +4,18 @@
  * See COPYING.txt for license details.
  */
 
-namespace Adobe\Employee\Controller\Api;
+namespace Adobe\Employee\Controller\Ajax;
 
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Controller\Result\JsonFactory;
 use Adobe\Employee\Api\EmployeeRepositoryInterface;
-use Adobe\Employee\Model\EmployeeFactory;
 
 /**
- * Class Save
+ * Class Update
  *
- * Creates or updates employee data via API request.
+ * Updates existing employee data via API request.
  */
-class Save implements HttpPostActionInterface
+class Update implements HttpPostActionInterface
 {
     /**
      * @var JsonFactory
@@ -26,28 +25,20 @@ class Save implements HttpPostActionInterface
     /**
      * @var EmployeeRepositoryInterface
      */
-    private $repository;
+    private $employeeRepository;
 
     /**
-     * @var EmployeeFactory
-     */
-    private $factory;
-
-    /**
-     * Save constructor.
+     * Update constructor.
      *
      * @param JsonFactory $jsonFactory
-     * @param EmployeeRepositoryInterface $repository
-     * @param EmployeeFactory $factory
+     * @param EmployeeRepositoryInterface $employeeRepository
      */
     public function __construct(
         JsonFactory $jsonFactory,
-        EmployeeRepositoryInterface $repository,
-        EmployeeFactory $factory
+        EmployeeRepositoryInterface $employeeRepository
     ) {
         $this->jsonFactory = $jsonFactory;
-        $this->repository = $repository;
-        $this->factory = $factory;
+        $this->employeeRepository = $employeeRepository;
     }
 
     /**
@@ -62,30 +53,27 @@ class Save implements HttpPostActionInterface
         try {
             $data = json_decode(file_get_contents("php://input"), true);
 
-            if (!$data) {
-                throw new \Exception("Invalid data");
+            if (!$data || !isset($data['id'])) {
+                throw new \Exception("Invalid request data");
             }
 
-            if (!empty($data['id'])) {
-                $employee = $this->repository->getById($data['id']);
-            } else {
-                $employee = $this->factory->create();
-            }
+            $employee = $this->employeeRepository->getById((int)$data['id']);
 
             $employee->setName($data['name'] ?? '');
             $employee->setJoiningDate($data['joining_date'] ?? null);
-            $employee->setDesignation($data['designation'] ?? '');
-            $employee->setAddress($data['address'] ?? '');
+            $employee->setDesignation($data['designation'] ?? null);
+            $employee->setAddress($data['address'] ?? null);
             $employee->setStatus($data['status'] ?? 1);
+
             $employee->setHobbies(
                 isset($data['hobbies']) ? implode(',', $data['hobbies']) : ''
             );
 
-            $this->repository->save($employee);
+            $this->employeeRepository->save($employee);
 
             return $result->setData([
                 'success' => true,
-                'item' => $employee->getData()
+                'employee' => $employee->getData()
             ]);
 
         } catch (\Exception $e) {

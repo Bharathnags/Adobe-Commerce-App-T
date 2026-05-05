@@ -6,6 +6,11 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 
+    <!-- ✅ ADD THIS: Map Data Interface to Model -->
+    <preference for="Adobe\Employee\Api\EmployeeInterface" 
+                type="Adobe\Employee\Model\Employee"/>
+
+    <!-- Repository Preference (Already Present) -->
     <preference for="Adobe\Employee\Api\EmployeeRepositoryInterface"
                 type="Adobe\Employee\Model\EmployeeRepository"/>
     

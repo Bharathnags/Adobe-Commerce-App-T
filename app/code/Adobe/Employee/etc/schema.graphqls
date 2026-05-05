@@ -1,0 +1,23 @@
+type Employee {
+    id: Int
+    name: String
+    designation: String
+    address: String
+    status: Int
+    hobbies: [String]
+}
+
+type Query {
+    employees: [Employee] @resolver(class: "Adobe\\Employee\\Model\\Resolver\\Employees")
+}
+
+type Mutation {
+    updateEmployee(
+        id: Int!,
+        name: String,
+        designation: String,
+        address: String,
+        status: Int,
+        hobbies: [String]
+    ): Employee @resolver(class: "Adobe\\Employee\\Model\\Resolver\\UpdateEmployee")
+}
