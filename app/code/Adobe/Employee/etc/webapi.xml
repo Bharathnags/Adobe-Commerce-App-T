@@ -13,7 +13,7 @@
         <service class="Adobe\Employee\Api\EmployeeRepositoryInterface"
                  method="getById"/>
         <resources>
-            <resource ref="self"/>
+            <resource ref="Magento_Backend::admin"/>
         </resources>
     </route>
 
@@ -22,7 +22,7 @@
         <service class="Adobe\Employee\Api\EmployeeRepositoryInterface"
                  method="getList"/>
         <resources>
-            <resource ref="self"/>
+            <resource ref="Magento_Backend::admin"/>
         </resources>
     </route>
 
@@ -31,7 +31,7 @@
         <service class="Adobe\Employee\Api\EmployeeRepositoryInterface"
                  method="save"/>
         <resources>
-            <resource ref="self"/>
+           <resource ref="Magento_Backend::admin"/>
         </resources>
     </route>
 
@@ -40,7 +40,7 @@
         <service class="Adobe\Employee\Api\EmployeeRepositoryInterface"
                  method="save"/>
         <resources>
-            <resource ref="self"/>
+            <resource ref="Magento_Backend::admin"/>
         </resources>
     </route>
 
@@ -49,7 +49,7 @@
         <service class="Adobe\Employee\Api\EmployeeRepositoryInterface"
                  method="deleteById"/>
         <resources>
-            <resource ref="self"/>
+            <resource ref="Magento_Backend::admin"/>
         </resources>
     </route>
 
