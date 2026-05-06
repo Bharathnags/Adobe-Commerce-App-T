@@ -1,33 +1,15 @@
 <?php
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
 
-namespace Adobe\Employee\Controller\Account;
+namespace Bnags\Knock\Controller\Index;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
 
-/**
- * Class Index
- *
- * Displays the employee account index page.
- */
 class Index extends Action
 {
-    /**
-     * @var PageFactory
-     */
     protected $resultPageFactory;
 
-    /**
-     * Index constructor.
-     *
-     * @param Context $context
-     * @param PageFactory $resultPageFactory
-     */
     public function __construct(
         Context $context,
         PageFactory $resultPageFactory
@@ -36,11 +18,6 @@ class Index extends Action
         $this->resultPageFactory = $resultPageFactory;
     }
 
-    /**
-     * Execute method
-     *
-     * @return \Magento\Framework\View\Result\Page
-     */
     public function execute()
     {
         return $this->resultPageFactory->create();

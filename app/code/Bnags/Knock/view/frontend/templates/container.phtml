@@ -1,0 +1,18 @@
+<div id="knock-app" data-bind="scope: 'knockApp'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+
+<script type="text/x-magento-init">
+{
+    "#knock-app": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "knockApp": {
+                    "component": "Bnags_Knock/js/view/app",
+                    "template": "Bnags_Knock/app"
+                }
+            }
+        }
+    }
+}
+</script>

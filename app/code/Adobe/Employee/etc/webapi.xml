@@ -1,28 +1,55 @@
 <?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Adobe, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
 
-    <!-- GET Employee -->
+    <!-- GET Single Employee -->
     <route url="/V1/employee/:id" method="GET">
-        <service class="Adobe\Employee\Api\EmployeeRepositoryInterface" method="getById"/>
+        <service class="Adobe\Employee\Api\EmployeeRepositoryInterface"
+                 method="getById"/>
         <resources>
-            <resource ref="anonymous"/>
+            <resource ref="self"/>
+        </resources>
+    </route>
+
+    <!-- GET All Employees -->
+    <route url="/V1/employees" method="GET">
+        <service class="Adobe\Employee\Api\EmployeeRepositoryInterface"
+                 method="getList"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+
+    <!-- CREATE / UPDATE Employee -->
+    <route url="/V1/employee" method="POST">
+        <service class="Adobe\Employee\Api\EmployeeRepositoryInterface"
+                 method="save"/>
+        <resources>
+            <resource ref="self"/>
         </resources>
     </route>
 
     <!-- UPDATE Employee -->
     <route url="/V1/employee" method="PUT">
-        <service class="Adobe\Employee\Api\EmployeeRepositoryInterface" method="save"/>
+        <service class="Adobe\Employee\Api\EmployeeRepositoryInterface"
+                 method="save"/>
         <resources>
-            <resource ref="anonymous"/>
+            <resource ref="self"/>
         </resources>
     </route>
 
     <!-- DELETE Employee -->
     <route url="/V1/employee/:id" method="DELETE">
-        <service class="Adobe\Employee\Api\EmployeeRepositoryInterface" method="deleteById"/>
+        <service class="Adobe\Employee\Api\EmployeeRepositoryInterface"
+                 method="deleteById"/>
         <resources>
-            <resource ref="anonymous"/>
+            <resource ref="self"/>
         </resources>
     </route>
 

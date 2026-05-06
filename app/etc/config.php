@@ -527,6 +527,7 @@ return [
         'Adobe_Employee' => 1,
         'Bnags_CustomFeature' => 1,
         'Bnags_Helloworldmodule' => 1,
+        'Bnags_Knock' => 1,
         'Mageplaza_Core' => 1,
         'Mageplaza_Smtp' => 1,
         'PayPal_Braintree' => 1,

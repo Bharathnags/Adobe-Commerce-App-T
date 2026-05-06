@@ -1,12 +1,19 @@
 <?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
 
 namespace Adobe\Employee\Model\Resolver;
 
+use Adobe\Employee\Api\EmployeeRepositoryInterface;
+use Magento\Framework\Exception\GraphQlInputException;
 use Magento\Framework\GraphQl\Query\ResolverInterface;
 use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
-use Magento\Framework\Exception\GraphQlInputException;
-use Adobe\Employee\Api\EmployeeRepositoryInterface;
 
+/**
+ * Update Employee Resolver
+ */
 class UpdateEmployee implements ResolverInterface
 {
     /**
@@ -14,6 +21,9 @@ class UpdateEmployee implements ResolverInterface
      */
     protected $employeeRepository;
 
+    /**
+     * @param EmployeeRepositoryInterface $employeeRepository
+     */
     public function __construct(
         EmployeeRepositoryInterface $employeeRepository
     ) {
@@ -21,16 +31,25 @@ class UpdateEmployee implements ResolverInterface
     }
 
     /**
-     * Update employee
+     * Resolve method
+     *
+     * @param mixed $field
+     * @param mixed $context
+     * @param ResolveInfo $info
+     * @param array|null $value
+     * @param array|null $args
+     *
+     * @return array
+     *
+     * @throws GraphQlInputException
      */
     public function resolve(
         $field,
         $context,
         ResolveInfo $info,
-       ?array $value = null,
-       ?array $args = null
+        ?array $value = null,
+        ?array $args = null
     ) {
-        // ✅ Validate required input
         if (empty($args['id'])) {
             throw new GraphQlInputException(__('Employee ID is required'));
         }
@@ -41,7 +60,6 @@ class UpdateEmployee implements ResolverInterface
             throw new GraphQlInputException(__('Employee not found'));
         }
 
-        //  Update fields if provided
         if (isset($args['name'])) {
             $employee->setName($args['name']);
         }
@@ -59,20 +77,18 @@ class UpdateEmployee implements ResolverInterface
         }
 
         if (isset($args['hobbies'])) {
-            $employee->setHobbies(implode(',', $args['hobbies']));   
+            $employee->setHobbies($args['hobbies']);
         }
 
-        //  Save updated employee
         $this->employeeRepository->save($employee);
 
-        // Return updated data
         return [
-            'id' => (int)$employee->getId(),
-            'name' => $employee->getName(),
+            'id'          => (int) $employee->getId(),
+            'name'        => $employee->getName(),
             'designation' => $employee->getDesignation(),
-            'address' => $employee->getAddress(),
-            'status' => (int)$employee->getStatus(),
-            'hobbies' => $employee->getHobbies()
+            'address'     => $employee->getAddress(),
+            'status'      => (int) $employee->getStatus(),
+            'hobbies'     => $employee->getHobbies()
         ];
     }
 }

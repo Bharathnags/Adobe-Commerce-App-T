@@ -7,9 +7,8 @@
 namespace Adobe\Employee\Api;
 
 use Magento\Framework\Exception\NoSuchEntityException;
-use Magento\Framework\Api\SearchCriteriaInterface;  
+use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Api\SearchResultsInterface;
-
 
 /**
  * Interface EmployeeRepositoryInterface
@@ -25,7 +24,9 @@ interface EmployeeRepositoryInterface
      * @return \Adobe\Employee\Api\EmployeeInterface
      * @throws \Magento\Framework\Exception\LocalizedException
      */
-    public function save(\Adobe\Employee\Api\EmployeeInterface $employee);
+    public function save(
+        \Adobe\Employee\Api\EmployeeInterface $employee
+    );
 
     /**
      * Get employee by ID
@@ -45,9 +46,8 @@ interface EmployeeRepositoryInterface
      */
     public function deleteById($id);
 
-
-/**
-     * Retrieve employee list.
+    /**
+     * Retrieve employee list
      *
      * @param SearchCriteriaInterface $searchCriteria
      * @return SearchResultsInterface

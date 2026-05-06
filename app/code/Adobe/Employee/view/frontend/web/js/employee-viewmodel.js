@@ -12,9 +12,6 @@ define([
 
     return Component.extend({
 
-        /**
-         * @inheritDoc
-         */
         initialize: function () {
             this._super();
 
@@ -45,11 +42,6 @@ define([
             return this;
         },
 
-        /**
-         * Load employees from Ajax
-         *
-         * @returns {void}
-         */
         loadEmployees: function () {
             var self = this;
 
@@ -59,22 +51,11 @@ define([
                 });
         },
 
-        /**
-         * Open form for adding a new employee
-         *
-         * @returns {void}
-         */
         addEmployee: function () {
             this.resetForm();
             this.showForm(true);
         },
 
-        /**
-         * Populate form with existing employee data
-         *
-         * @param {Object} emp - Employee data object
-         * @returns {void}
-         */
         editEmployee: function (emp) {
             console.log("Button clicked");
 
@@ -86,15 +67,19 @@ define([
             self.designation(emp.designation || '');
             self.address(emp.address || '');
             self.status(emp.status || 1);
-            self.hobbies(emp.hobbies ? emp.hobbies.split(',') : []);
+
+            /* FIXED HERE */
+            if (Array.isArray(emp.hobbies)) {
+                self.hobbies(emp.hobbies);
+            } else if (emp.hobbies) {
+                self.hobbies(emp.hobbies.split(','));
+            } else {
+                self.hobbies([]);
+            }
+
             self.showForm(true);
         },
 
-        /**
-         * Save employee data via Ajax
-         *
-         * @returns {void}
-         */
         saveEmployee: function () {
             var self = this;
 
@@ -120,12 +105,6 @@ define([
             });
         },
 
-        /**
-         * Delete employee via Ajax
-         *
-         * @param {Object} emp - Employee data object
-         * @returns {void}
-         */
         deleteEmployee: function (emp) {
             var self = this;
 
@@ -141,20 +120,10 @@ define([
             });
         },
 
-        /**
-         * Cancel and hide form
-         *
-         * @returns {void}
-         */
         cancelForm: function () {
             this.showForm(false);
         },
 
-        /**
-         * Reset all form fields to default state
-         *
-         * @returns {void}
-         */
         resetForm: function () {
             this.id(null);
             this.name('');

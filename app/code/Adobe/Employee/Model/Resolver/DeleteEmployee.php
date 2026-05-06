@@ -7,35 +7,26 @@
 namespace Adobe\Employee\Model\Resolver;
 
 use Adobe\Employee\Api\EmployeeRepositoryInterface;
-use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\GraphQl\Query\ResolverInterface;
 use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
 
 /**
- * Employees Resolver
+ * Delete Employee Resolver
  */
-class Employees implements ResolverInterface
+class DeleteEmployee implements ResolverInterface
 {
     /**
      * @var EmployeeRepositoryInterface
      */
-    private $employeeRepository;
-
-    /**
-     * @var SearchCriteriaBuilder
-     */
-    private $searchCriteriaBuilder;
+    protected $employeeRepository;
 
     /**
      * @param EmployeeRepositoryInterface $employeeRepository
-     * @param SearchCriteriaBuilder $searchCriteriaBuilder
      */
     public function __construct(
-        EmployeeRepositoryInterface $employeeRepository,
-        SearchCriteriaBuilder $searchCriteriaBuilder
+        EmployeeRepositoryInterface $employeeRepository
     ) {
         $this->employeeRepository = $employeeRepository;
-        $this->searchCriteriaBuilder = $searchCriteriaBuilder;
     }
 
     /**
@@ -46,7 +37,7 @@ class Employees implements ResolverInterface
      * @param ResolveInfo $info
      * @param array|null $value
      * @param array|null $args
-     * @return array
+     * @return bool
      */
     public function resolve(
         $field,
@@ -55,9 +46,8 @@ class Employees implements ResolverInterface
         ?array $value = null,
         ?array $args = null
     ) {
-        $criteria = $this->searchCriteriaBuilder->create();
-        $result = $this->employeeRepository->getList($criteria);
+        $this->employeeRepository->deleteById($args['id']);
 
-        return $result->getItems();
+        return true;
     }
 }

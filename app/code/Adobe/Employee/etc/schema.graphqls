@@ -8,16 +8,32 @@ type Employee {
 }
 
 type Query {
-    employees: [Employee] @resolver(class: "Adobe\\Employee\\Model\\Resolver\\Employees")
+    employees: [Employee]
+        @resolver(class: "Adobe\\Employee\\Model\\Resolver\\Employees")
 }
 
 type Mutation {
-    updateEmployee(
-        id: Int!,
-        name: String,
-        designation: String,
-        address: String,
-        status: Int,
+    createEmployee(
+        name: String!
+        designation: String
+        address: String
+        status: Int
         hobbies: [String]
-    ): Employee @resolver(class: "Adobe\\Employee\\Model\\Resolver\\UpdateEmployee")
+    ): Employee
+        @resolver(class: "Adobe\\Employee\\Model\\Resolver\\CreateEmployee")
+
+    updateEmployee(
+        id: Int!
+        name: String
+        designation: String
+        address: String
+        status: Int
+        hobbies: [String]
+    ): Employee
+        @resolver(class: "Adobe\\Employee\\Model\\Resolver\\UpdateEmployee")
+
+    deleteEmployee(
+        id: Int!
+    ): Boolean
+        @resolver(class: "Adobe\\Employee\\Model\\Resolver\\DeleteEmployee")
 }

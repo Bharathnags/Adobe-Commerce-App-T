@@ -10,7 +10,8 @@
 <a href="<?= $escaper->escapeUrl($block->getUrl('employee/account/add')) ?>"
    style="margin-bottom:10px; display:inline-block;">Add Employee</a>
 
-<table border="1" cellpadding="5" cellspacing="0" style="width:100%; border-collapse:collapse;">
+<table border="1" cellpadding="5" cellspacing="0"
+       style="width:100%; border-collapse:collapse;">
     <thead>
         <tr>
             <th>ID</th>
@@ -23,6 +24,7 @@
             <th>Actions</th>
         </tr>
     </thead>
+
     <tbody>
 
     <?php $employees = $block->getEmployees(); ?>
@@ -36,11 +38,40 @@
                 <td><?= $escaper->escapeHtml($emp->getDesignation()) ?></td>
                 <td><?= $escaper->escapeHtml($emp->getAddress()) ?></td>
                 <td><?= $emp->getStatus() ? 'Active' : 'Inactive' ?></td>
-                <td><?= $escaper->escapeHtml($emp->getHobbies()) ?></td>
+
                 <td>
-                    <a href="<?= $escaper->escapeUrl($block->getUrl('employee/account/edit', ['id' => $emp->getId()])) ?>">Edit</a> |
-                    <a href="<?= $escaper->escapeUrl($block->getUrl('employee/account/delete', ['id' => $emp->getId()])) ?>"
-                       onclick="return confirm('Are you sure you want to delete this employee?')">Delete</a>
+                    <?php
+                    $hobbies = $emp->getHobbies();
+
+                    echo $escaper->escapeHtml(
+                        is_array($hobbies)
+                            ? implode(', ', $hobbies)
+                            : $hobbies
+                    );
+                    ?>
+                </td>
+
+                <td>
+                    <a href="<?= $escaper->escapeUrl(
+                        $block->getUrl(
+                            'employee/account/edit',
+                            ['id' => $emp->getId()]
+                        )
+                    ) ?>">
+                        Edit
+                    </a>
+                    |
+                    <a href="<?= $escaper->escapeUrl(
+                        $block->getUrl(
+                            'employee/account/delete',
+                            ['id' => $emp->getId()]
+                        )
+                    ) ?>"
+                       onclick="return confirm(
+                           'Are you sure you want to delete this employee?'
+                       )">
+                        Delete
+                    </a>
                 </td>
             </tr>
         <?php endforeach; ?>

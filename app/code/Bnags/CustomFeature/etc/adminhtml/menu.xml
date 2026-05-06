@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+
+    <menu>
+        <add id="Bnags_CustomFeature::main"
+             title="Custom Feature"
+             module="Bnags_CustomFeature"
+             sortOrder="100"
+             parent="Magento_Backend::content"
+             action="adminhtml/system_config/edit/section/customfeature"
+             resource="Bnags_CustomFeature::config"/>
+    </menu>
+
+</config>
