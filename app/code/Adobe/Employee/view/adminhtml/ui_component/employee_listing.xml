@@ -53,18 +53,36 @@
         <filters name="listing_filters"/>
         <paging name="listing_paging"/>
         <massaction name="listing_massaction">
-            <action name="delete">
-                <settings>
-                    <confirm>
-                        <message translate="true">Delete selected items?</message>
-                        <title translate="true">Delete</title>
-                    </confirm>
-                    <url path="employee/employee/massDelete"/>
-                    <type>delete</type>
-                    <label translate="true">Delete</label>
-                </settings>
-            </action>
-        </massaction>
+
+    <action name="delete">
+        <settings>
+            <confirm>
+                <message translate="true">Delete selected items?</message>
+                <title translate="true">Delete</title>
+            </confirm>
+            <url path="employee/employee/massDelete"/>
+            <type>delete</type>
+            <label translate="true">Delete</label>
+        </settings>
+    </action>
+
+    <action name="enable">
+        <settings>
+            <url path="employee/employee/massStatus/status/1"/>
+            <type>enable</type>
+            <label translate="true">Activate</label>
+        </settings>
+    </action>
+
+    <action name="disable">
+        <settings>
+            <url path="employee/employee/massStatus/status/0"/>
+            <type>disable</type>
+            <label translate="true">Deactivate</label>
+        </settings>
+    </action>
+
+</massaction>
     </listingToolbar>
 
     <columns name="employee_columns">

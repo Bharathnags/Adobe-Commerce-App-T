@@ -4,7 +4,7 @@ type Employee {
     designation: String
     address: String
     status: Int
-    hobbies: [String]
+    hobbies: [String]//String
 }
 
 type Query {
